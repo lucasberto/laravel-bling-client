@@ -1,0 +1,42 @@
+{
+    "name": "lucasberto/laravel-bling-client",
+    "description": "Um consumidor da API do Bling para Laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lucasberto\\LaravelBlingClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lucasberto\\LaravelBlingClient\\Tests\\": "tests"
+        }
+      },
+    "authors": [
+        {
+            "name": "lucasberto"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "extra": {
+        "laravel" : {
+            "providers" : [
+                "Lucasberto\\LaravelBlingClient\\LaravelBlingClientServiceProvider"
+            ],
+            "aliases" : {
+                "BlingClient": "Lucasberto\\LaravelBlingClient\\Facades\\BlingClient"
+            }
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-f": "vendor/bin/phpunit --filter"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.5"
+    }
+}
