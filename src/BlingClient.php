@@ -13,6 +13,7 @@ class BlingClient
     private $returnIndex = null;
     private $result = [];
     private $storeCode = null;
+    private $postXML = '';
 
     public function __construct()
     {
@@ -63,6 +64,49 @@ class BlingClient
         }
     }
 
+    private function generateProductLinkXML($id)
+    {
+        $xml = '
+        <?xml version="1.0" encoding="UTF-8"?>
+        <produtosLoja>
+            <produtoLoja>
+               <idLojaVirtual>' . $id . '</idLojaVirtual>
+               <preco>
+                   <preco>9999</preco>
+                   <precoPromocional>9999</precoPromocional>
+               </preco>               
+           </produtoLoja>
+        </produtosLoja>
+        ';
+        return $xml;
+    }
+
+    public function postRequestXML()
+    {
+        $reqUrl = "{$this->baseUrl}{$this->actionUrl}";
+        try {
+            //$response = Http::retry(3, 300)->get($reqUrl, $params)->throw();
+            $response = Http::retry(3, 300)->asForm()->post($reqUrl, [
+                'apikey' => $this->apiKey,
+                'xml' => rawurlencode($this->postXML)
+            ]);
+
+            //$resp_array = $response->json();
+
+            if ($response->successful() && isset($response['retorno'][$this->returnIndex])) {
+                return $response['retorno'][$this->returnIndex];
+            } else {
+                //TODO: Log the error
+                return false;
+            }
+        } catch (\Throwable $e) {
+            // TODO: Log the error
+            return false;
+        }
+    }
+
+
+
     public function withToken($token)
     {
         $this->apiKey = $token;
@@ -85,6 +129,16 @@ class BlingClient
         return $this;
     }
 
+    public function updateLink($sku, $id, $store_id)
+    {
+        $this->actionUrl = "produtoLoja/{$store_id}/{$sku}/json/";
+        $this->actionType = 'update_link';
+        $this->returnIndex = 'produtosLoja';
+        $this->postXML = $this->generateProductLinkXML($id);
+
+        return $this;
+    }
+
     public function byStore($storeCode)
     {
         $this->storeCode = $storeCode;
@@ -97,6 +151,8 @@ class BlingClient
             $this->result = $this->fetchUsingGet(true);
         } else if ($this->actionType == 'produto') {
             $this->result = $this->fetchUsingGet(false);
+        } else if ($this->actionType == 'update_link') {
+            $this->result = $this->postRequestXML();
         }
 
 
