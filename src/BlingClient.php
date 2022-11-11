@@ -50,13 +50,14 @@ class BlingClient
             $reqUrl = "{$this->baseUrl}{$this->actionUrl}";
             try {
                 $response = Http::retry(3, 300)->get($reqUrl, $params)->throw();
+                if ($response->successful() && isset($response['retorno'][$this->returnIndex])) {
+                    return $response['retorno'][$this->returnIndex];
+                } else {
+                    //TODO: Log the error
+                    return false;
+                }
             } catch (\Throwable $e) {
                 // TODO: Log the error
-            }
-            if ($response->successful() && isset($response['retorno'][$this->returnIndex])) {
-                return $response['retorno'][$this->returnIndex];
-            } else {
-                //TODO: Log the error
                 return false;
             }
         }
