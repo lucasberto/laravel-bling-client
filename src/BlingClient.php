@@ -81,6 +81,22 @@ class BlingClient
         return $xml;
     }
 
+    private function generateProductXML($data)
+    {
+        $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+        <produto>
+           <codigo>{$data['sku']}</codigo>
+           <descricao></descricao>
+           <peso_bruto>{$data['weight']}</peso_bruto>
+           <peso_liq>{$data['weight']}</peso_liq>
+           <marca>{$data['brand']}</marca>
+           <gtin>{$data['ean']}</gtin>
+           <localizacao>{$data['location']}</localizacao>
+         </produto>";
+
+        return $xml;
+    }
+
     public function postRequestXML()
     {
         $reqUrl = "{$this->baseUrl}{$this->actionUrl}";
@@ -139,6 +155,16 @@ class BlingClient
         return $this;
     }
 
+    public function updateProduct($data)
+    {
+        $this->actionUrl = "produto/{$data['sku']}/json/";
+        $this->actionType = 'update_product';
+        $this->returnIndex = 'produtos';
+        $this->postXML = $this->generateProductXML($data);
+
+        return $this;
+    }
+
     public function byStore($storeCode)
     {
         $this->storeCode = $storeCode;
@@ -152,6 +178,8 @@ class BlingClient
         } else if ($this->actionType == 'produto') {
             $this->result = $this->fetchUsingGet(false);
         } else if ($this->actionType == 'update_link') {
+            $this->result = $this->postRequestXML();
+        } else if ($this->actionType == 'update_product') {
             $this->result = $this->postRequestXML();
         }
 
