@@ -91,6 +91,7 @@ class BlingClient
            <peso_liq>{$data['weight']}</peso_liq>
            <marca>{$data['brand']}</marca>
            <gtin>{$data['ean']}</gtin>
+           <gtinEmbalagem>{$data['ean']}</gtinEmbalagem>
            <localizacao>{$data['location']}</localizacao>
          </produto>";
 
