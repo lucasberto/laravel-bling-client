@@ -9,7 +9,7 @@ class LaravelBlingClientServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('blingclient', function ($app) {
-            return new BlingClient;
+            return new BlingClient();
         });
     }
 

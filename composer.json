@@ -19,8 +19,8 @@
         }
     ],
     "require-dev": {
-        "orchestra/testbench": "^7.0",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "orchestra/testbench": "^8.0"
     },
     "extra": {
         "laravel" : {
@@ -37,6 +37,7 @@
         "test-f": "vendor/bin/phpunit --filter"
     },
     "require": {
-        "guzzlehttp/guzzle": "^7.5"
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/support": "^10.3"
     }
 }
