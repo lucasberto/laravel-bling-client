@@ -17,3 +17,8 @@ composer require lucasberto/laravel-bling-client
 ### Utilização
 
 Este pacote utiliza interface fluente (Fluent API / Method Chaining) para realizar as operações.
+Antes de fazer as chamadas, você deverá importar a Facade do pacote:
+
+```
+
+```
