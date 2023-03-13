@@ -28,7 +28,7 @@
                 "Lucasberto\\LaravelBlingClient\\LaravelBlingClientServiceProvider"
             ],
             "aliases" : {
-                "BlingClient": "Lucasberto\\LaravelBlingClient\\Facades\\BlingClientFacade"
+                "BlingClient": "Lucasberto\\LaravelBlingClient\\Facades\\BlingClient"
             }
         }
     },

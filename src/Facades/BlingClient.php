@@ -4,7 +4,7 @@ namespace Lucasberto\LaravelBlingClient\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class BlingClientFacade extends Facade
+class BlingClient extends Facade
 {
 
     protected static function getFacadeAccessor()
