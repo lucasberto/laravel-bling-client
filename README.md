@@ -53,3 +53,7 @@ BlingClient::withToken('SEU_TOKEN')->product('SKU_DO_PRODUTO')->fetch();
 | updateLink(_'SKU'_, _'ID-INTERNO'_, _'ID-LOJA'_) | Atualiza vínculo entre _SKU_ e _ID-INTERNO_ no Bling para a loja _ID-LOJA_.                                                                                                                        |
 | updateProduct(Array _dados_)                     | Atualiza dados de um produto no Bling. A informação _dados['sku']_ é obrigatória. Campos possíveis: _weight_(peso bruto e líquido), _brand_(marca), _ean_(EAN), _location_(Localização no estoque) |
 | byStore(_'CODIGO-LOJA'_)                         | Especifica a loja para a qual a requisição está sendo feita. O _CODIGO-LOJA_ pode ser encontrado nas configurações de Integração no Bling.                                                         |
+
+### Testando
+
+Caso queira executar os testes no pacote, será necessário preencher as informações de teste no arquivo _.env.test_ e, em seguida, renomeá-lo para _.env_.
