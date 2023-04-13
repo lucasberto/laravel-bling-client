@@ -83,17 +83,19 @@ class BlingClient
 
     private function generateProductXML($data)
     {
+        $weight = $data['weight'] ? "<peso_bruto>{$data['weight']}</peso_bruto><peso_liq>{$data['weight']}</peso_liq>" : "";
+        $brand = $data['brand'] ? "<marca>{$data['brand']}</marca>" : "";
+        $ean = $data['ean'] ? "<gtin>{$data['ean']}</gtin><gtinEmbalagem>{$data['ean']}</gtinEmbalagem>" : "";
+        $location = $data['location'] ? "<localizacao>{$data['location']}</localizacao>" : "";
+
         $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <produto>
            <codigo>{$data['sku']}</codigo>
-           <descricao></descricao>
-           <peso_bruto>{$data['weight']}</peso_bruto>
-           <peso_liq>{$data['weight']}</peso_liq>
-           <marca>{$data['brand']}</marca>
-           <gtin>{$data['ean']}</gtin>
-           <gtinEmbalagem>{$data['ean']}</gtinEmbalagem>
-           <localizacao>{$data['location']}</localizacao>
-         </produto>";
+           {$weight}
+           {$brand}
+           {$ean}
+           {$location}
+           </produto>";
 
         return $xml;
     }
