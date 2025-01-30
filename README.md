@@ -1,3 +1,8 @@
+
+> [!WARNING]  
+> Esse pacote foi descontinuado, pois utiliza a versão 2 da API do Bling, que foi descontinuada para dar lugar à versão 3.
+
+
 ## **Este pacote implementa a comunicação com a API do Bling ERP.**
 
 _Pacote ainda em desenvolvimento. Nem todas as funcionalidades da API estão implementadas._
